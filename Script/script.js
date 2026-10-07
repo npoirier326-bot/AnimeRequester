@@ -3,6 +3,7 @@ const API_HOST = "anime-db.p.rapidapi.com";
 
 async function rechercherAnime(nom) {
   const url = `https://anime-db.p.rapidapi.com/anime?search=${nom}&page=1&size=10`;
+  try {
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -10,7 +11,20 @@ async function rechercherAnime(nom) {
       "X-RapidAPI-Host": API_HOST
     }
   });
+  if (!response.ok) {
+    const erreur = await response.json();
+    throw new Error(erreur.message || "Erreur lors de la recherche d'anime");
+  }
+
+  const data = await response.json();
+  return data;
+
+} catch (error) {
+  console.error("Erreur rechercherAnime :", error.message);
+  return null;
 }
+}
+
 async function rechercherParId(id) {
   const url = `https://anime-db.p.rapidapi.com/anime/by-id/${id}`;
     const response = await fetch(url, {
