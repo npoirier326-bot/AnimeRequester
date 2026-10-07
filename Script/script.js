@@ -10,4 +10,25 @@ async function rechercherAnime(nom) {
       "X-RapidAPI-Host": API_HOST
     }
   });
-  }
+}
+async function rechercherParId(id) {
+  const url = `https://anime-db.p.rapidapi.com/anime/by-id/${id}`;
+    const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": API_KEY,
+      "X-RapidAPI-Host": API_HOST
+    }
+  });
+}
+
+async function rechercherParClassement(rang) {
+  const url = `https://anime-db.p.rapidapi.com/anime/by-ranking/${rang}`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": API_KEY,
+        "X-RapidAPI-Host": API_HOST
+      }
+    });
+}
