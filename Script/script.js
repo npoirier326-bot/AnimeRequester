@@ -1,6 +1,7 @@
 const API_KEY = "18e298dd24msh380f23f01091ad3p125b71jsnb4ac42cc11f8";
 const API_HOST = "anime-db.p.rapidapi.com";
 
+//recherche d'anime par nom et gestion d'erreurs//
 async function rechercherAnime(nom) {
   const url = `https://anime-db.p.rapidapi.com/anime?search=${nom}&page=1&size=10`;
   try {
@@ -25,6 +26,7 @@ async function rechercherAnime(nom) {
 }
 }
 
+//fonction de recherche des anime par leur identifiant et gestion d'erreurs//
 async function rechercherParId(id) {
   const url = `https://anime-db.p.rapidapi.com/anime/by-id/${id}`;
   try {
@@ -51,6 +53,7 @@ async function rechercherParId(id) {
   }
 }
 
+//recherche d'anime par leur classement et gestion d'erreurs//
 async function rechercherParClassement(rang) {
   const url = `https://anime-db.p.rapidapi.com/anime/by-ranking/${rang}`;
 
