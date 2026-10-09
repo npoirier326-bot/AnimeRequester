@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Anime Requester : recherchez des animes par titre, identifiant, classement ou genre.">
+  <meta name="description" content="Anime Requester : recherchez des animes par titre, identifiant, classement">
   <title>Anime Requester</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
   <a class="skip-link" href="#search-form">Aller au formulaire de recherche</a>
 
   <header class="site-header">
-    <div class="site-header__inner">
+    <div class="site-header_inner">
       <h1 class="site-title">Anime Requester</h1>
 
       <button type="button" id="theme-toggle" class="btn btn--ghost" aria-pressed="false">
@@ -29,8 +29,8 @@
   <main class="container">
 
     <details class="panel" open>
-      <summary class="panel__summary">
-        <h2 id="api-key-title" class="panel__title">Clé API RapidAPI</h2>
+      <summary class="panel_summary">
+        <h2 id="api-key-title" class="panel_title">Clé API RapidAPI</h2>
       </summary>
 
       <p id="api-key-help" class="help">
@@ -51,7 +51,7 @@
     </details>
 
     <section class="panel" aria-labelledby="search-title">
-      <h2 id="search-title" class="panel__title">Trouver un anime</h2>
+      <h2 id="search-title" class="panel_title">Trouver un anime</h2>
 
       <form id="search-form" class="form" novalidate>
 
@@ -112,18 +112,18 @@
   </main>
 
   <footer class="site-footer">
-    <p>Projet de groupe JavaScript – Anime Requester</p>
+    <p>Projet de groupe JavaScript - Anime Requester</p>
   </footer>
 
   <template id="card-template">
     <article class="card">
-      <h3 class="card__title"></h3>
-      <img class="card__image" alt=""
+      <h3 class="card_title"></h3>
+      <img class="card_image" alt=""
            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-      <p class="card__text"><strong>Synopsis :</strong> <span class="card__synopsis-text"></span></p>
-      <p class="card__text"><strong>Genres :</strong> <span class="card__genres-text"></span></p>
-      <p class="card__text"><strong>Classement :</strong> <span class="card__ranking-text"></span></p>
-      <p class="card__text"><strong>Nombre d'épisodes :</strong> <span class="card__episodes-text"></span></p>
+      <p class="card_text"><strong>Synopsis :</strong> <span class="card_synopsis-text"></span></p>
+      <p class="card_text"><strong>Genres :</strong> <span class="card_genres-text"></span></p>
+      <p class="card_text"><strong>Classement :</strong> <span class="card_ranking-text"></span></p>
+      <p class="card_text"><strong>Nombre d'épisodes :</strong> <span class="card_episodes-text"></span></p>
     </article>
   </template>
 
