@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Anime Requester : recherchez des animes par titre, identifiant, classement ou genre.">
+  <title>Anime Requester</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="script/script.js"></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#search-form">Aller au formulaire de recherche</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <h1 class="site-title">Anime Requester</h1>
+
+      <button type="button" id="theme-toggle" class="btn btn--ghost" aria-pressed="false">
+        <span aria-hidden="true" id="theme-toggle-icon">☾</span>
+        <span id="theme-toggle-label">Mode sombre</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <details class="panel" open>
+      <summary class="panel__summary">
+        <h2 id="api-key-title" class="panel__title">Clé API RapidAPI</h2>
+      </summary>
+
+      <p id="api-key-help" class="help">
+        Collez votre clé (<code>x-rapidapi-key</code>). Elle est conservée dans votre navigateur uniquement le temps de la session.
+      </p>
+
+      <form id="api-key-form" class="form form--inline" autocomplete="off">
+        <div class="field field--row field--grow">
+          <label for="api-key">Clé API</label>
+          <input type="password" id="api-key" name="api-key" required
+                 autocomplete="off" spellcheck="false"
+                 aria-describedby="api-key-help">
+        </div>
+        <button type="submit" class="btn btn--secondary">Enregistrer la clé</button>
+      </form>
+
+      <p id="api-key-status" class="status" role="status"></p>
+    </details>
+
+    <section class="panel" aria-labelledby="search-title">
+      <h2 id="search-title" class="panel__title">Trouver un anime</h2>
+
+      <form id="search-form" class="form" novalidate>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="search-type">Choisissez un type de recherche :</label>
+            <select id="search-type" name="search-type">
+              <option value="title" selected>Recherche par titre</option>
+              <option value="id">Recherche par identifiant</option>
+              <option value="ranking">Recherche par classement</option>
+              <option value="genre">Recherche par genre</option>
+            </select>
+          </div>
+
+          <div class="field" id="param-field">
+            <label for="search-param">Paramètre :</label>
+            <input type="text" id="search-param" name="search-param"
+                   placeholder="Ex. : Evangelion"
+                   autocomplete="off" aria-describedby="search-param-help">
+            <p id="search-param-help" class="help">Saisissez un titre, un identifiant ou un classement.</p>
+          </div>
+        </div>
+
+        <fieldset class="field genres" id="genre-fieldset" hidden>
+          <legend>Genres</legend>
+          <div class="genres__list" id="genre-list">
+            <div class="chip"><input type="checkbox" id="genre-action" name="genre" value="Action"><label for="genre-action">Action</label></div>
+            <div class="chip"><input type="checkbox" id="genre-adventure" name="genre" value="Adventure"><label for="genre-adventure">Adventure</label></div>
+            <div class="chip"><input type="checkbox" id="genre-comedy" name="genre" value="Comedy"><label for="genre-comedy">Comedy</label></div>
+            <div class="chip"><input type="checkbox" id="genre-drama" name="genre" value="Drama"><label for="genre-drama">Drama</label></div>
+            <div class="chip"><input type="checkbox" id="genre-fantasy" name="genre" value="Fantasy"><label for="genre-fantasy">Fantasy</label></div>
+            <div class="chip"><input type="checkbox" id="genre-horror" name="genre" value="Horror"><label for="genre-horror">Horror</label></div>
+            <div class="chip"><input type="checkbox" id="genre-mystery" name="genre" value="Mystery"><label for="genre-mystery">Mystery</label></div>
+            <div class="chip"><input type="checkbox" id="genre-romance" name="genre" value="Romance"><label for="genre-romance">Romance</label></div>
+            <div class="chip"><input type="checkbox" id="genre-scifi" name="genre" value="Sci-Fi"><label for="genre-scifi">Sci-Fi</label></div>
+            <div class="chip"><input type="checkbox" id="genre-slice" name="genre" value="Slice of Life"><label for="genre-slice">Slice of Life</label></div>
+            <div class="chip"><input type="checkbox" id="genre-sports" name="genre" value="Sports"><label for="genre-sports">Sports</label></div>
+            <div class="chip"><input type="checkbox" id="genre-supernatural" name="genre" value="Supernatural"><label for="genre-supernatural">Supernatural</label></div>
+            <div class="chip"><input type="checkbox" id="genre-suspense" name="genre" value="Suspense"><label for="genre-suspense">Suspense</label></div>
+          </div>
+        </fieldset>
+
+        <p id="form-error" class="status status--error" role="alert"></p>
+
+        <div class="actions">
+          <button type="submit" class="btn btn--primary">Rechercher</button>
+          <button type="reset" class="btn btn--secondary">Effacer</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="results" aria-labelledby="results-title">
+      <h2 id="results-title" class="visually-hidden">Résultats de la recherche</h2>
+      <p id="results-status" class="status" role="status"></p>
+      <div id="results-list" class="cards"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Projet de groupe JavaScript – Anime Requester</p>
+  </footer>
+
+  <template id="card-template">
+    <article class="card">
+      <h3 class="card__title"></h3>
+      <img class="card__image" alt=""
+           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+      <p class="card__text"><strong>Synopsis :</strong> <span class="card__synopsis-text"></span></p>
+      <p class="card__text"><strong>Genres :</strong> <span class="card__genres-text"></span></p>
+      <p class="card__text"><strong>Classement :</strong> <span class="card__ranking-text"></span></p>
+      <p class="card__text"><strong>Nombre d'épisodes :</strong> <span class="card__episodes-text"></span></p>
+    </article>
+  </template>
+
+</body>
+</html>
