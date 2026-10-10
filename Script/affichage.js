@@ -10,6 +10,7 @@ function creerCarte(anime) {
     titre = anime.title;
   }
   carte.querySelector('.card_title').textContent = titre;
+  
   const image = carte.querySelector('.card_image');
   if (anime.image) {
     image.src = anime.image;
@@ -17,4 +18,16 @@ function creerCarte(anime) {
   } else {
     image.remove();
   }
+
+  let synopsis = 'N/A';
+  if (anime.synopsis) {
+    synopsis = anime.synopsis;
+  }
+  carte.querySelector('.card_synopsis-text').textContent = synopsis;
+
+  let genres = 'N/A';
+  if (anime.genres && anime.genres.length > 0) {
+    genres = anime.genres.join(', ');
+  }
+  carte.querySelector('.card_genres-text').textContent = genres;
 }
