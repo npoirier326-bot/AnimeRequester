@@ -45,3 +45,30 @@ function creerCarte(anime) {
 
   return carte;
 }
+
+function afficherCartes(animes) {
+  conteneur.innerHTML = '';
+
+  if (resultats === null) {
+    statut.textContent = 'Erreur : Aucun résultat trouvé.';
+    return;
+  }
+
+  let animes = [];
+  if (resultat.data) {
+    animes = resultat.data;
+  } else {
+    animes = [resultat];      
+  }
+
+if (animes.length === 0) {
+    statut.textContent = 'Aucun résultat trouvé.';
+    return;
+}
+
+statut.textContent = animes.length + ' résultat(s) trouvé(s).';
+  animes.forEach((anime) => {
+    const carte = creerCarte(anime);
+    conteneur.appendChild(carte);
+  });
+}
