@@ -18,8 +18,13 @@ function creerCarte(anime) {
   // Image : on la garde seulement si elle existe
   const image = carte.querySelector('.card_image');
   if (anime.image) {
+    image.loading = 'lazy';
     image.src = anime.image;
     image.alt = 'Affiche de ' + titre;
+    // Si le lien de l'image est cassé, on retire l'image de la carte
+    image.addEventListener('error', () => {
+      image.remove();
+    });
   } else {
     image.remove();
   }
@@ -60,8 +65,8 @@ export function afficherCartes(resultat) {
   // On efface les anciennes cartes
   conteneur.innerHTML = '';
 
-  // Erreur côté API : les fonctions de recherche renvoient null
-  if (resultat === null) {
+  // Erreur côté API (null) ou rien reçu (undefined)
+  if (!resultat) {
     statut.textContent = 'Une erreur est survenue, veuillez réessayer.';
     return;
   }
@@ -69,7 +74,7 @@ export function afficherCartes(resultat) {
   // On met le résultat sous forme de liste
   let animes = [];
   if (resultat.data) {
-    animes = resultat.data;   // recherche par titre : la liste est dans "data"
+    animes = resultat.data;   // recherche par titre ou genre : la liste est dans "data"
   } else {
     animes = [resultat];      // recherche par id ou classement : un seul anime
   }

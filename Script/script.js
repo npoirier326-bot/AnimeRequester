@@ -1,3 +1,4 @@
+import { afficherCartes } from './affichage.js';
 const API_KEY = "18e298dd24msh380f23f01091ad3p125b71jsnb4ac42cc11f8";
 const API_HOST = "anime-db.p.rapidapi.com";
 
@@ -78,4 +79,5 @@ async function rechercherParClassement(rang) {
     console.error("Erreur rechercherParClassement :", error.message);
     return null;
   }
+
 }
