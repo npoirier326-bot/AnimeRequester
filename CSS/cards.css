@@ -1,0 +1,44 @@
+/* La zone qui contient toutes les cartes : une grille */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+/* Une carte */
+.card {
+  background-color: #ffffff;
+  color: #1d1d2b;
+  border: 1px solid #d9d9e3;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card_title {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+/* Affiche de l'anime */
+.card_image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.card_text {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .card {
+  background-color: #1e1e2e;
+  color: #f0f0f5;
+  border-color: #3a3a4f;
+}
