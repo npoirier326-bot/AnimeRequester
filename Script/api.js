@@ -3,49 +3,49 @@ const API_HOST = "anime-db.p.rapidapi.com";
 
 //recherche d'anime par nom et gestion d'erreurs//
 export async function rechercherAnime(nom) {
-const url = `https://anime-db.p.rapidapi.com/anime?search=${encodeURIComponent(nom)}&page=1&size=10`;
+  const url = `https://anime-db.p.rapidapi.com/anime?search=${encodeURIComponent(nom)}&page=1&size=10`;
   try {
-  const response = await fetch(url, {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": API_KEY,
-      "X-RapidAPI-Host": API_HOST
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": API_KEY,
+        "X-RapidAPI-Host": API_HOST
+      }
+    });
+    if (!response.ok) {
+      const erreur = await response.json();
+      throw new Error(erreur.message || "Erreur lors de la recherche d'anime");
     }
-  });
-  if (!response.ok) {
-    const erreur = await response.json();
-    throw new Error(erreur.message || "Erreur lors de la recherche d'anime");
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error("Erreur rechercherAnime :", error.message);
+    return null;
   }
-
-  const data = await response.json();
-  return data;
-
-} catch (error) {
-  console.error("Erreur rechercherAnime :", error.message);
-  return null;
-}
 }
 
 //fonction de recherche des anime par leur identifiant et gestion d'erreurs//
 export async function rechercherParId(id) {
-const url = `https://anime-db.p.rapidapi.com/anime/by-id/${encodeURIComponent(id)}`;
+  const url = `https://anime-db.p.rapidapi.com/anime/by-id/${encodeURIComponent(id)}`;
   try {
     const response = await fetch(url, {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": API_KEY,
-      "X-RapidAPI-Host": API_HOST
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": API_KEY,
+        "X-RapidAPI-Host": API_HOST
+      }
+    });
+
+    if (!response.ok) {
+      const erreur = await response.json();
+      throw new Error(erreur.message || "Erreur lors de la recherche par ID");
     }
-  });
 
-  if (!response.ok) {
-    const erreur = await response.json();
-    throw new Error(erreur.message || "Erreur lors de la recherche par ID");
-  }
-  
 
-  const data = await response.json();
-  return data;
+    const data = await response.json();
+    return data;
 
   } catch (error) {
     console.error("Erreur rechercherParId :", error.message);
