@@ -3,7 +3,7 @@ const API_HOST = "anime-db.p.rapidapi.com";
 
 //recherche d'anime par nom et gestion d'erreurs//
 export async function rechercherAnime(nom) {
-  const url = `https://anime-db.p.rapidapi.com/anime?search=${nom}&page=1&size=10`;
+const url = `https://anime-db.p.rapidapi.com/anime?search=${encodeURIComponent(nom)}&page=1&size=10`;
   try {
   const response = await fetch(url, {
     method: "GET",
@@ -28,7 +28,7 @@ export async function rechercherAnime(nom) {
 
 //fonction de recherche des anime par leur identifiant et gestion d'erreurs//
 export async function rechercherParId(id) {
-  const url = `https://anime-db.p.rapidapi.com/anime/by-id/${id}`;
+const url = `https://anime-db.p.rapidapi.com/anime/by-id/${encodeURIComponent(id)}`;
   try {
     const response = await fetch(url, {
     method: "GET",
@@ -55,7 +55,7 @@ export async function rechercherParId(id) {
 
 //recherche d'anime par leur classement et gestion d'erreurs//
 export async function rechercherParClassement(rang) {
-  const url = `https://anime-db.p.rapidapi.com/anime/by-ranking/${rang}`;
+  const url = `https://anime-db.p.rapidapi.com/anime/by-ranking/${encodeURIComponent(rang)}`;
 
   try {
     const response = await fetch(url, {
