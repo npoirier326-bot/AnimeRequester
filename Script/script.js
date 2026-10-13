@@ -1,5 +1,9 @@
 import { afficherCartes } from './affichage.js';
 import { rechercherAnime, rechercherParId, rechercherParClassement } from './api.js';
+import { initTheme } from './theme.js';
+
+// Active le mode clair/sombre (thème sauvegardé dans sessionStorage)
+initTheme();
 
 // Gestion du formulaire de recherche
 const formulaire = document.getElementById('search-form');
