@@ -1,1 +1,84 @@
-# AnimeRequester
+# Anime Requester
+
+Application web qui permet de rechercher des animes dans une base de données (API Anime DB) et d'afficher les résultats sous forme de cartes.
+
+Site en ligne : 
+
+## Technologies
+
+- HTML5
+- CSS3
+- JavaScript (Vanilla JS, ES6, modules)
+- [API Anime DB](https://rapidapi.com/brianrofiq/api/anime-db) via RapidAPI
+
+## Fonctionnalités
+
+### Version 1
+
+- Recherche par **titre**, par **identifiant** ou par **classement**
+- 10 résultats maximum pour une recherche par titre, un seul pour un identifiant ou un classement
+- Résultats affichés sous forme de cartes : titre, image (si disponible), synopsis, genres, classement et nombre d'épisodes
+- Bouton pour lancer la recherche et bouton pour réinitialiser le formulaire
+- Gestion des erreurs (aucun résultat, paramètre vide, erreur de l'API)
+- Accessibilité : champs avec labels, lien d'évitement, résultats annoncés aux lecteurs d'écran (`aria-live`), navigation au clavier
+- Affichage responsive (grille de cartes qui s'adapte à la taille de l'écran)
+
+### Version 2 (en cours)
+
+
+## Structure du projet
+
+```
+AnimeRequester/
+├── index.html          # Page principale
+├── CSS/
+│   ├── style.css       # Style général du site
+│   └── cards.css       # Style des cartes de résultats
+├── Script/
+│   ├── script.js       # Gestion du formulaire (point d'entrée)
+│   ├── api.js          # Fonctions de requête vers l'API
+│   └── affichage.js    # Création et affichage des cartes
+└── README.md
+```
+
+Le code JavaScript est découpé en modules, chacun avec un rôle précis :
+
+- `api.js` récupère les données depuis l'API
+- `affichage.js` transforme ces données en cartes
+- `script.js` relie le formulaire, l'API et l'affichage
+
+## Lancer le projet en local
+
+1. Cloner le dépôt :
+   ```bash
+   git clone https://github.com/npoirier326-bot/Anime-Requester.git
+   ```
+2. Ouvrir le dossier dans VS Code.
+3. Ouvrir `index.html` avec l'extension **Live Server** (clic droit « Open with Live Server »).
+
+> Le projet utilise des modules JavaScript : il doit être ouvert via un serveur (comme Live Server), pas en double-cliquant sur `index.html`.
+
+## Clé API
+
+Le site a besoin d'une clé RapidAPI personnelle (gratuite) :
+
+1. Créer un compte sur [RapidAPI](https://rapidapi.com/auth/sign-up)
+2. Rechercher **Anime DB** et s'abonner au plan gratuit
+3. Copier la valeur de `x-rapidapi-key`
+
+Pour l'instant, la clé se place dans la constante `API_KEY` de `Script/api.js`. Ne jamais la publier sur GitHub. La version 2 la remplace par un champ de saisie sur la page.
+
+## Organisation du travail
+
+- Un dépôt GitHub public, une branche par fonctionnalité (`API`, `formulaire`, `affichageCarte`, `V2`) fusionnée dans `main`
+- Les tâches sont suivies avec les **issues** et un **tableau Kanban** GitHub
+- Messages de commit au format `feat:`, `fix:`, `docs:`, `refactor:`
+
+## Auteurs
+
+Projet de groupe réalisé dans le cadre du BUT Informatique (R3.01, IUT de Caen).
+
+- Nolan Poirier ([@npoirier326-bot](https://github.com/npoirier326-bot))
+- Issam Doumi ([@issam](https://github.com/issam))
+- Hamza Ouasri ([@ouasrihamza](https://github.com/ouasrihamza))
+- Marwane Nairi ([@renox-marwane](https://github.com/renox-marwane))
