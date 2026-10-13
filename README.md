@@ -2,7 +2,7 @@
 
 Application web qui permet de rechercher des animes dans une base de données (API Anime DB) et d'afficher les résultats sous forme de cartes.
 
-Site en ligne : 
+Site en ligne : https://npoirier326-bot.github.io/AnimeRequester/
 
 ## Technologies
 
