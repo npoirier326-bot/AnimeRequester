@@ -104,7 +104,7 @@ body {
   border-bottom: 4px solid var(--border);
 }
 
-.site-header__inner {
+.site-header_inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -144,16 +144,16 @@ body {
   padding: 1.5rem;
 }
 
-.panel__summary {
+.panel_summary {
   cursor: pointer;
   margin-bottom: 0.75rem;
 }
 
-.panel__summary .panel__title {
+.panel_summary .panel_title {
   display: inline;
 }
 
-.panel__title {
+.panel_title {
   margin: 0 0 1rem;
   font-size: 1.5rem;
   font-weight: 800;
@@ -170,7 +170,7 @@ body {
   align-items: stretch;
 }
 
-.form__row {
+.form_row {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
@@ -238,7 +238,7 @@ code {
   border-radius: 8px;
 }
 
-.genres__list {
+.genres_list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
@@ -368,6 +368,7 @@ code {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.75rem;
+  align-items: start;
 }
 
 .card {
@@ -389,24 +390,25 @@ code {
   box-shadow: 9px 9px 0 var(--shadow-color);
 }
 
-.card__title {
+.card_title {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 800;
   line-height: 1.25;
 }
 
-.card__image {
+.card_image {
   display: block;
   width: 100%;
   max-width: 14rem;
   height: auto;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
   border: 3px solid var(--border);
   border-radius: 10px;
 }
 
-.card__text {
+.card_text {
   margin: 0;
   width: 100%;
   font-size: 0.95rem;
@@ -446,7 +448,7 @@ code {
     flex: 1;
   }
 
-  .form__row {
+  .form_row {
     grid-template-columns: 1fr 2fr;
   }
 
