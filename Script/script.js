@@ -6,6 +6,8 @@ const formulaire = document.getElementById('search-form');
 const typeRecherche = document.getElementById('search-type');
 const champParametre = document.getElementById('search-param');
 const erreurFormulaire = document.getElementById('form-error');
+const genreField =document.getElementById("genre-fieldset");
+
 
 formulaire.addEventListener('submit', async (e) => {
   e.preventDefault();               // empêche le rechargement de la page
@@ -36,4 +38,12 @@ formulaire.addEventListener('submit', async (e) => {
   }
 
   afficherCartes(resultat);
-});
+  });
+  typeRecherche.addEventListener("change",function (){
+    if(typeRecherche.value==="genre"){
+      genreField.hidden=false;// cela veut dire qu'on le rend visible 
+    }
+    else{
+      genreField.hidden=true;
+    }
+  });
