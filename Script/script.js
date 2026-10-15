@@ -1,5 +1,5 @@
 import { afficherCartes } from './affichage.js';
-import { rechercherAnime, rechercherParId, rechercherParClassement } from './api.js';
+import { rechercherAnime, rechercherParId, rechercherParClassement,rechercherParGenres } from './api.js';
 
 // Gestion du formulaire de recherche
 const formulaire = document.getElementById('search-form');
