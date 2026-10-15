@@ -17,11 +17,23 @@ formulaire.addEventListener('submit', async (e) => {
   const parametre = champParametre.value.trim();
 
   // La recherche par genre fait partie de la V2
-  if (type === 'genre') {
-    erreurFormulaire.textContent = "La recherche par genre n'est pas encore disponible.";
-    return;
+  if(type ==="genre"){
+    const liste = document.getElementById("genre-list");
+    const tabGenre =  liste.querySelectorAll("input:checked");
+    const genreChoisis = Array.from(tabGenre).map(function(g){
+      return g.value;
+    });
+    if(genreChoisis.length ===0){
+       erreurFormulaire.textContent="Veuillez cocher au moins un genre";
+       return ;
+    }
+    const resultatGenre = await rechercherParGenres(genreChoisis)
+    afficherCartes(resultatGenre);
+     return ;
+
   }
 
+  
   // Le formulaire a "novalidate", donc on vérifie nous-mêmes
   if (parametre === '') {
     erreurFormulaire.textContent = 'Veuillez saisir un paramètre.';
