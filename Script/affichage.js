@@ -91,4 +91,10 @@ export function afficherCartes(resultat) {
     const carte = creerCarte(anime);
     conteneur.appendChild(carte);
   });
+
 }
+ export function  effacerCartes(){
+    conteneur.innerHTML="";
+    statut.textContent="";
+    
+  }

@@ -1,6 +1,5 @@
-import { afficherCartes } from './affichage.js';
+import { afficherCartes, effacerCartes } from './affichage.js';
 import { rechercherAnime, rechercherParId, rechercherParClassement,rechercherParGenres } from './api.js';
-
 // Gestion du formulaire de recherche
 const formulaire = document.getElementById('search-form');
 const typeRecherche = document.getElementById('search-type');
@@ -59,3 +58,11 @@ formulaire.addEventListener('submit', async (e) => {
       genreField.hidden=true;
     }
   });
+  formulaire.addEventListener("reset",function(){
+      effacerCartes();
+      genreField.hidden=true;
+      erreurFormulaire.textContent="";
+
+
+    })
+
