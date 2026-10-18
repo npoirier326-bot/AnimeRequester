@@ -19,7 +19,7 @@
   <a class="skip-link" href="#search-form">Aller au formulaire de recherche</a>
 
   <header class="site-header">
-    <div class="site-header__inner">
+    <div class="site-header_inner">
       <h1 class="site-title">Anime Requester</h1>
 
       <button type="button" id="theme-toggle" class="btn btn--ghost" aria-pressed="false">
@@ -32,8 +32,8 @@
   <main class="container">
 
     <details class="panel" open>
-      <summary class="panel__summary">
-        <h2 id="api-key-title" class="panel__title">Clé API RapidAPI</h2>
+      <summary class="panel_summary">
+        <h2 id="api-key-title" class="panel_title">Clé API RapidAPI</h2>
       </summary>
 
       <p id="api-key-help" class="help">
@@ -54,11 +54,11 @@
     </details>
 
     <section class="panel" aria-labelledby="search-title">
-      <h2 id="search-title" class="panel__title">Trouver un anime</h2>
+      <h2 id="search-title" class="panel_title">Trouver un anime</h2>
 
       <form id="search-form" class="form" novalidate>
 
-        <div class="form__row">
+        <div class="form_row">
           <div class="field">
             <label for="search-type">Choisissez un type de recherche :</label>
             <select id="search-type" name="search-type">
@@ -72,7 +72,7 @@
           <div class="field" id="param-field">
             <label for="search-param">Paramètre :</label>
             <input type="text" id="search-param" name="search-param"
-                   placeholder="Ex. : Evangelion"
+                   placeholder="Ex : Evangelion"
                    autocomplete="off" aria-describedby="search-param-help">
             <p id="search-param-help" class="help">Saisissez un titre, un identifiant ou un classement.</p>
           </div>

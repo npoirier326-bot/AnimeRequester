@@ -93,8 +93,8 @@ export function afficherCartes(resultat) {
   });
 
 }
- export function  effacerCartes(){
-    conteneur.innerHTML="";
-    statut.textContent="";
-    
-  }
+export function effacerCartes() {
+  conteneur.innerHTML = "";
+  statut.textContent = "";
+
+}

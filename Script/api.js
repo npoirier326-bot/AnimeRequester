@@ -78,13 +78,13 @@ export async function rechercherParClassement(rang) {
     return null;
   }
 }
-export  async function rechercherParGenres(genres){
-  if(genres.length===0){
+export async function rechercherParGenres(genres) {
+  if (genres.length === 0) {
     return null;
   }
   const liste = genres.join(",")
- const url = `https://anime-db.p.rapidapi.com/anime?genres=${encodeURIComponent(liste)}&page=1&size=10`;
-   try {
+  const url = `https://anime-db.p.rapidapi.com/anime?genres=${encodeURIComponent(liste)}&page=1&size=10`;
+  try {
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -105,5 +105,5 @@ export  async function rechercherParGenres(genres){
     console.error("Erreur rechercherParGenres :", error.message);
     return null;
   }
-  
+
 }
