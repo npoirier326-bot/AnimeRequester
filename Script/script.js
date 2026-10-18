@@ -1,54 +1,95 @@
+// Fichier principal : relie le formulaire, l'API, l'affichage et le thème
 
 import { afficherCartes, effacerCartes } from './affichage.js';
-import { rechercherAnime, rechercherParId, rechercherParClassement,rechercherParGenres } from './api.js';
+import { rechercherAnime, rechercherParId, rechercherParClassement, rechercherParGenres } from './api.js';
 import { lireCle } from './storage.js';
 import { initTheme } from './theme.js';
 
 // Active le mode clair/sombre (thème sauvegardé dans sessionStorage)
 initTheme();
 
-// Gestion du formulaire de recherche
 const formulaire = document.getElementById('search-form');
 const typeRecherche = document.getElementById('search-type');
 const champParametre = document.getElementById('search-param');
+const zoneParametre = document.getElementById('param-field');
+const aideParametre = document.getElementById('search-param-help');
+const zoneGenres = document.getElementById('genre-fieldset');
+const listeGenres = document.getElementById('genre-list');
 const erreurFormulaire = document.getElementById('form-error');
-const genreField =document.getElementById("genre-fieldset");
 
+const textesParType = {
+  title: {
+    exemple: 'Ex : Evangelion',
+    aide: "Saisissez le titre d'un anime.",
+    clavier: 'text'
+  },
+  id: {
+    exemple: 'Ex : 1',
+    aide: 'Saisissez un identifiant (nombre entier).',
+    clavier: 'numeric'
+  },
+  ranking: {
+    exemple: 'Ex : 1',
+    aide: 'Saisissez un classement (nombre entier positif).',
+    clavier: 'numeric'
+  }
+};
+
+// Adapte le formulaire au type de recherche choisi
+function mettreAJourFormulaire() {
+  const type = typeRecherche.value;
+
+  // Recherche par genre : pas de champ texte, on affiche les cases à cocher
+  if (type === 'genre') {
+    zoneParametre.hidden = true;
+    zoneGenres.hidden = false;
+    return;
+  }
+
+  // Autres types : champ texte avec le bon exemple
+  const textes = textesParType[type];
+  champParametre.placeholder = textes.exemple;
+  champParametre.inputMode = textes.clavier;   // clavier numérique sur mobile
+  aideParametre.textContent = textes.aide;
+  zoneParametre.hidden = false;
+  zoneGenres.hidden = true;
+}
 
 formulaire.addEventListener('submit', async (e) => {
   e.preventDefault();   // empêche le rechargement de la page
-  erreurFormulaire.textContent="";
-  if(!lireCle()){
-    erreurFormulaire.textContent = "Saisissez votre clé API";
-    return ;
-  }
+  erreurFormulaire.textContent = '';
 
- 
+  // La clé API est obligatoire
+  if (!lireCle()) {
+    erreurFormulaire.textContent = 'Saisissez votre clé API.';
+    return;
+  }
 
   const type = typeRecherche.value;
-  const parametre = champParametre.value.trim();
 
-  // La recherche par genre fait partie de la V2
-  if(type ==="genre"){
-    const liste = document.getElementById("genre-list");
-    const tabGenre =  liste.querySelectorAll("input:checked");
-    const genreChoisis = Array.from(tabGenre).map(function(g){
-      return g.value;
-    });
-    if(genreChoisis.length ===0){
-       erreurFormulaire.textContent="Veuillez cocher au moins un genre";
-       return ;
+  // Recherche par genre
+  if (type === 'genre') {
+    const casesCochees = listeGenres.querySelectorAll('input:checked');
+    const genresChoisis = Array.from(casesCochees).map((c) => c.value);
+
+    if (genresChoisis.length === 0) {
+      erreurFormulaire.textContent = 'Veuillez cocher au moins un genre.';
+      return;
     }
-    const resultatGenre = await rechercherParGenres(genreChoisis)
-    afficherCartes(resultatGenre);
-     return ;
 
+    afficherCartes(await rechercherParGenres(genresChoisis));
+    return;
   }
 
-  
-  // Le formulaire a "novalidate", donc on vérifie nous-mêmes
+  const parametre = champParametre.value.trim();
+
   if (parametre === '') {
     erreurFormulaire.textContent = 'Veuillez saisir un paramètre.';
+    return;
+  }
+
+  if ((type === 'id' || type === 'ranking') && !/^[1-9]\d*$/.test(parametre)) {
+    erreurFormulaire.textContent = 'Veuillez saisir un nombre entier positif.';
     return;
   }
 
@@ -62,20 +103,14 @@ formulaire.addEventListener('submit', async (e) => {
   }
 
   afficherCartes(resultat);
-  });
-  typeRecherche.addEventListener("change",function (){
-    if(typeRecherche.value==="genre"){
-      genreField.hidden=false;// cela veut dire qu'on le rend visible 
-    }
-    else{
-      genreField.hidden=true;
-    }
-  });
-  formulaire.addEventListener("reset",function(){
-      effacerCartes();
-      genreField.hidden=true;
-      erreurFormulaire.textContent="";
+});
 
+typeRecherche.addEventListener('change', mettreAJourFormulaire);
 
-    })
+formulaire.addEventListener('reset', () => {
+  effacerCartes();
+  erreurFormulaire.textContent = '';
+  setTimeout(mettreAJourFormulaire, 0);
+});
 
+mettreAJourFormulaire();
