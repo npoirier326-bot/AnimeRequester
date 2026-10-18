@@ -1,6 +1,12 @@
+
 import { afficherCartes, effacerCartes } from './affichage.js';
 import { rechercherAnime, rechercherParId, rechercherParClassement,rechercherParGenres } from './api.js';
 import { lireCle } from './storage.js';
+import { initTheme } from './theme.js';
+
+// Active le mode clair/sombre (thème sauvegardé dans sessionStorage)
+initTheme();
+
 // Gestion du formulaire de recherche
 const formulaire = document.getElementById('search-form');
 const typeRecherche = document.getElementById('search-type');
@@ -11,6 +17,7 @@ const genreField =document.getElementById("genre-fieldset");
 
 formulaire.addEventListener('submit', async (e) => {
   e.preventDefault();   // empêche le rechargement de la page
+  erreurFormulaire.textContent="";
   if(!lireCle()){
     erreurFormulaire.textContent = "Saisissez votre clé API";
     return ;
