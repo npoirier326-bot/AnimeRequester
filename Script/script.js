@@ -16,7 +16,7 @@ formulaire.addEventListener('submit', async (e) => {
     return ;
   }
 
- // 2a08d3b300msh9804c6b0ccc76b4p1e397ajsn0d0b5d2a3ac
+ 
 
   const type = typeRecherche.value;
   const parametre = champParametre.value.trim();
