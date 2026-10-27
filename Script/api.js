@@ -1,20 +1,17 @@
 import { lireCle } from "./storage.js";
-const API_HOST = "anime-db.p.rapidapi.com";
+
 
 //recherche d'anime par nom et gestion d'erreurs//
 export async function rechercherAnime(nom) {
-  const url = `https://anime-db.p.rapidapi.com/anime?search=${encodeURIComponent(nom)}&page=1&size=10`;
+  const url = `https://api.tenrai.org/v1/anime?q=${encodeURIComponent(nom)}&limit=10`;
   try {
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        "X-RapidAPI-Key": lireCle(),
-        "X-RapidAPI-Host": API_HOST
-      }
+     
     });
     if (!response.ok) {
-      const erreur = await response.json();
-      throw new Error(erreur.message || "Erreur lors de la recherche d'anime");
+      throw new Error("Erreur " + response.status);
+      
     }
 
     const data = await response.json();
