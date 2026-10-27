@@ -48,14 +48,10 @@ export async function rechercherParId(id) {
 
 //recherche d'anime par leur classement et gestion d'erreurs//
 export async function rechercherParClassement(rang) {
-  const url = `https://anime-db.p.rapidapi.com/anime/by-ranking/${encodeURIComponent(rang)}`;
+  const url = `https://api.tenrai.org/v1/top/anime?limit=1&page=${encodeURIComponent(rang)}`;
   try {
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        "X-RapidAPI-Key": lireCle(),
-        "X-RapidAPI-Host": API_HOST
-      }
     });
 
     if (!response.ok) {
