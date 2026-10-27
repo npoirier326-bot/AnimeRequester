@@ -10,8 +10,8 @@ export async function rechercherAnime(nom) {
      
     });
     if (!response.ok) {
-      throw new Error("Erreur " + response.status);
-      
+      const erreur = await response.json();
+      throw new Error(erreur.message || "Erreur lors de la recherche d'anime");
     }
 
     const data = await response.json();
@@ -25,14 +25,10 @@ export async function rechercherAnime(nom) {
 
 //fonction de recherche des anime par leur identifiant et gestion d'erreurs//
 export async function rechercherParId(id) {
-  const url = `https://anime-db.p.rapidapi.com/anime/by-id/${encodeURIComponent(id)}`;
+  const url = `https://api.tenrai.org/v1/anime/${encodeURIComponent(id)}`;
   try {
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        "X-RapidAPI-Key": lireCle(),
-        "X-RapidAPI-Host": API_HOST
-      }
     });
 
     if (!response.ok) {
