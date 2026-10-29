@@ -59,7 +59,6 @@ formulaire.addEventListener('submit', async (e) => {
   e.preventDefault();   // empêche le rechargement de la page
   erreurFormulaire.textContent = '';
 
-  // La clé API est obligatoire
 
   const type = typeRecherche.value;
 
