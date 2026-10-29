@@ -67,19 +67,33 @@ export async function rechercherParClassement(rang) {
     return null;
   }
 }
+const numerosGenres = {
+  "Action": 1,
+  "Adventure": 2,
+  "Comedy": 4,
+  "Drama": 8,
+  "Fantasy": 10,
+  "Horror": 14,
+  "Mystery": 7,
+  "Romance": 22,
+  "Sci-Fi": 24,
+  "Slice of Life": 36,
+  "Sports": 30,
+  "Supernatural": 37,
+  "Suspense": 41
+};
 export async function rechercherParGenres(genres) {
   if (genres.length === 0) {
     return null;
   }
-  const liste = genres.join(",")
-  const url = `https://anime-db.p.rapidapi.com/anime?genres=${encodeURIComponent(liste)}&page=1&size=10`;
+  const liste = genres.map(function (nom){
+    return numerosGenres[nom]
+
+  }).join(",")
+  const url = `https://api.tenrai.org/v1/anime?genres=${liste}&limit=10`;
   try {
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        "X-RapidAPI-Key": lireCle(),
-        "X-RapidAPI-Host": API_HOST
-      }
     });
 
     if (!response.ok) {
