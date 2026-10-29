@@ -1,6 +1,6 @@
 # Anime Requester
 
-Application web qui permet de rechercher des animes dans une base de données (API Anime DB) et d'afficher les résultats sous forme de cartes.
+Application web qui permet de rechercher des animes dans une base de données (API Tenrai) et d'afficher les résultats sous forme de cartes.
 
 Site en ligne : https://npoirier326-bot.github.io/AnimeRequester/
 
@@ -9,7 +9,7 @@ Site en ligne : https://npoirier326-bot.github.io/AnimeRequester/
 - HTML5
 - CSS3
 - JavaScript (Vanilla JS, ES6, modules)
-- [API Anime DB](https://rapidapi.com/brianrofiq/api/anime-db) via RapidAPI
+- [API Tenrai](https://api.tenrai.org/documentation) (catalogue MyAnimeList, format Jikan v4, sans clé API)
 
 ## Fonctionnalités
 
@@ -25,10 +25,13 @@ Site en ligne : https://npoirier326-bot.github.io/AnimeRequester/
 
 ### Version 2
 
-- Recherche par **genre** : un ou plusieurs genres à cocher parmi 13 propositions
+- Recherche par **genre** : un ou plusieurs genres à cocher parmi 13 propositions. Les animes affichés ont **tous** les genres cochés.
 - **Mode clair / sombre** : le choix est mémorisé dans le `sessionStorage` (le thème du système est utilisé par défaut)
-- **Clé API saisie par l'utilisateur** sur la page et mémorisée dans le `sessionStorage` : elle n'est jamais écrite dans le code et disparaît à la fermeture de l'onglet
-- Message d'erreur si la clé API n'a pas été saisie
+## Changement d'API
+
+Le projet utilisait d'abord l'API Anime DB (RapidAPI), qui n'est plus disponible. Comme l'a indiqué l'enseignant, nous utilisons maintenant l'API Tenrai, qui reprend le format de l'API Jikan. Elle n'a pas besoin de clé API : la saisie de la clé, prévue pour RapidAPI, a donc été supprimée.
+
+L'API est en version bêta et son accès public est limité à 120 requêtes par minute. En cas d'erreur, il peut s'agir d'une indisponibilité temporaire.
 
 ## Structure du projet
 
@@ -41,9 +44,7 @@ AnimeRequester/
 │   ├── script.js        # Gestion du formulaire de recherche (point d'entrée)
 │   ├── api.js           # Fonctions de requête vers l'API
 │   ├── affichage.js     # Création et affichage des cartes
-│   ├── storage.js       # Lecture et sauvegarde de la clé API (sessionStorage)
-│   ├── theme.js         # Mode clair / sombre
-│   └── main.js          # Enregistrement de la clé API saisie
+│   └── theme.js          # Mode clair / sombre
 └── README.md
 ```
 
@@ -52,7 +53,6 @@ Le code JavaScript est découpé en modules, chacun avec un rôle précis :
 - `api.js` récupère les données depuis l'API
 - `affichage.js` transforme ces données en cartes
 - `script.js` relie le formulaire, l'API et l'affichage
-- `storage.js` et `main.js` gèrent la clé API
 - `theme.js` gère le mode clair / sombre
 
 ## Lancer le projet en local
@@ -63,26 +63,12 @@ Le code JavaScript est découpé en modules, chacun avec un rôle précis :
    ```
 2. Ouvrir le dossier dans VS Code.
 3. Ouvrir `index.html` avec l'extension **Live Server** (clic droit « Open with Live Server »).
-4. Saisir sa clé API dans la page (voir la section suivante).
 
 > Le projet utilise des modules JavaScript : il doit être ouvert via un serveur (comme Live Server), pas en double-cliquant sur `index.html`.
 
-## Clé API
-
-Le site a besoin d'une clé RapidAPI personnelle (gratuite) :
-
-1. Créer un compte sur [RapidAPI](https://rapidapi.com/auth/sign-up)
-2. Rechercher **Anime DB** et s'abonner au plan gratuit
-3. Copier la valeur de `x-rapidapi-key`
-4. La coller dans le champ « Clé API » en haut de la page, puis cliquer sur « Enregistrer la clé »
-
-La clé est conservée uniquement le temps de la session : fermer l'onglet l'efface. Elle n'est jamais enregistrée dans le code du projet.
-
-> Le plan gratuit de RapidAPI limite le nombre de requêtes par jour. Si le site affiche une erreur après de nombreuses recherches, le quota du jour est probablement atteint.
-
 ## Organisation du travail
 
-- Un dépôt GitHub public, une branche par fonctionnalité (`API`, `formulaire`, `affichageCarte`, `V2`) fusionnée dans `main` avec des Pull Requests
+- Un dépôt GitHub public, une branche par fonctionnalité (`API`, `formulaire`, `affichageCarte`, `V2`,`dark-mode`, `tenrai`) fusionnée dans `main` avec des Pull Requests
 - Les tâches sont suivies avec les **issues** et un **tableau Kanban** GitHub
 - Messages de commit au format `feat:`, `fix:`, `docs:`, `refactor:`
 
