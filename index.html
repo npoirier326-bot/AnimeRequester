@@ -29,34 +29,9 @@
   </header>
 
   <main class="container">
-
-    <details class="panel" open>
-      <summary class="panel_summary">
-        <h2 id="api-key-title" class="panel_title">Clé API RapidAPI</h2>
-      </summary>
-
-      <p id="api-key-help" class="help">
-        Collez votre clé (<code>x-rapidapi-key</code>). Elle est conservée dans votre navigateur uniquement le temps de la session.
-      </p>
-
-      <form id="api-key-form" class="form form--inline" autocomplete="off">
-        <div class="field field--row field--grow">
-          <label for="api-key">Clé API</label>
-          <input type="password" id="api-key" name="api-key" required
-                 autocomplete="off" spellcheck="false"
-                 aria-describedby="api-key-help">
-        </div>
-        <button type="submit" class="btn btn--secondary">Enregistrer la clé</button>
-      </form>
-
-      <p id="api-key-status" class="status" role="status"></p>
-    </details>
-
     <section class="panel" aria-labelledby="search-title">
       <h2 id="search-title" class="panel_title">Trouver un anime</h2>
-
       <form id="search-form" class="form" novalidate>
-
         <div class="form_row">
           <div class="field">
             <label for="search-type">Choisissez un type de recherche :</label>
