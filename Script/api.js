@@ -1,4 +1,4 @@
-import { lireCle } from "./storage.js";
+
 
 
 //recherche d'anime par nom et gestion d'erreurs//

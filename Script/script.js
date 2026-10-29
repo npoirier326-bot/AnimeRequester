@@ -2,7 +2,7 @@
 
 import { afficherCartes, effacerCartes } from './affichage.js';
 import { rechercherAnime, rechercherParId, rechercherParClassement, rechercherParGenres } from './api.js';
-import { lireCle } from './storage.js';
+
 import { initTheme } from './theme.js';
 
 // Active le mode clair/sombre (thème sauvegardé dans sessionStorage)
@@ -60,10 +60,6 @@ formulaire.addEventListener('submit', async (e) => {
   erreurFormulaire.textContent = '';
 
   // La clé API est obligatoire
-  if (!lireCle()) {
-    erreurFormulaire.textContent = 'Saisissez votre clé API.';
-    return;
-  }
 
   const type = typeRecherche.value;
 
